@@ -1,0 +1,16 @@
+addons/ch.fischspiele.tilesethelper/not_for_export/
+engine.cfg
+icon.png
+.import/
+default_env.tres
+icon.png.import
+.idea
+tablut.apk
+tablut.exe
+tablut.pck
+*.import
+
+/build
+card/card_imgs/*.import
+xiangqi/assets/*.import
+tablut/assets/*.import
