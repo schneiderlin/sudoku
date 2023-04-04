@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Tablut"
+config/name="Sudoku"
 run/main_scene="res://Sudoku.tscn"
 config/icon="res://icon.png"
 
