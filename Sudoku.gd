@@ -8,7 +8,7 @@ const width = 450
 const gap = height / 9
 const magic = Vector2(0, -gap/2)
 
-onready var label = $Label
+@onready var label = $Label
 
 var select_idx # 鼠标选中的位置 [row, col]的格式
 var state # 已经填了的数字, 格式和 puzzle 一样.
@@ -149,7 +149,7 @@ func _unhandled_input(event):
 		select_idx = position_to_grid_idx(position)
 	
 	if event is InputEventKey && event is InputEventWithModifiers && event.is_pressed():
-		var number = event.scancode - KEY_0
+		var number = event.keycode - KEY_0
 		if 1 <= number && number <= 9:
 			input_number(select_idx[0], select_idx[1], number, event.shift)
 
@@ -285,22 +285,23 @@ func add_fix_number(row, col, number):
 	var label = Label.new()
 	label.text = str(number)
 	label.set_position(grid_idx_to_position(row, col) + magic)
-	label.set("custom_fonts/font", extra_bold_font)
+	label.set("theme_override_fonts/font", extra_bold_font)
 	add_child(label)
 
 func add_number(row, col, number):
+	print(state[row][col])
 	state[row][col] = number
 	var label = Label.new()
 	label.text = str(number)
 	var position = grid_idx_to_position(row, col) + magic
 	label.set_position(position)
-	label.set("custom_fonts/font", bold_font)
+	label.set("theme_override_fonts/font", bold_font)
 	add_child(label)
 	labels[row][col] = label
 	
 	# 填了确定数字之后, note都可以清除
-	for number in range(1, 10):
-		remove_note(row, col, number)
+	for i in range(1, 10):
+		remove_note(row, col, i)
 	
 	# 填一次数字剪枝一次
 	prune()
