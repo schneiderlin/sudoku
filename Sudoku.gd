@@ -122,7 +122,7 @@ func test():
 	print(has)
 
 func init_state():
-	state = puzzle
+	state = puzzle.duplicate(true)
 	
 	labels = [
 		[null,null,null,null,null,null,null,null,null],
@@ -289,7 +289,6 @@ func add_fix_number(row, col, number):
 	add_child(label)
 
 func add_number(row, col, number):
-	print(state[row][col])
 	state[row][col] = number
 	var label = Label.new()
 	label.text = str(number)
