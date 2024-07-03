@@ -3,10 +3,10 @@ extends Node2D
 const bold_font = preload("res://assets/fonts/BoldFont.tres")
 const extra_bold_font = preload("res://assets/fonts/ExtraBoldFont.tres")
 
-const height = 450
-const width = 450
+const height = 800
+const width = 800
 const gap = height / 9
-const magic = Vector2(0, -gap/2)
+const magic = Vector2(-5, -10)
 
 @onready var label = $Label
 
@@ -278,7 +278,8 @@ func input_number(row, col, number, is_note):
 		if state[row][col] == 0:
 			add_number(row, col, number)
 		else:
-			labels[row][col].free()
+			if labels[row][col]:
+				labels[row][col].free()
 			add_number(row, col, number)
 
 func add_fix_number(row, col, number):
@@ -292,7 +293,7 @@ func add_number(row, col, number):
 	state[row][col] = number
 	var label = Label.new()
 	label.text = str(number)
-	var position = grid_idx_to_position(row, col) + magic
+	var position = grid_idx_to_position(row, col) + magic	
 	label.set_position(position)
 	label.set("theme_override_fonts/font", bold_font)
 	add_child(label)
@@ -308,7 +309,7 @@ func add_number(row, col, number):
 func add_note(row, col, number):
 	var label = Label.new()
 	label.text = str(number)
-	var position = grid_idx_to_position(row, col)
+	var position = grid_idx_to_position(row, col) + magic
 	match number:
 		1: position += Vector2(-gap/3, -gap/3)
 		2: position += Vector2(0, -gap/3)
