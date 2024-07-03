@@ -151,7 +151,7 @@ func _unhandled_input(event):
 	if event is InputEventKey && event is InputEventWithModifiers && event.is_pressed():
 		var number = event.keycode - KEY_0
 		if 1 <= number && number <= 9:
-			input_number(select_idx[0], select_idx[1], number, event.shift)
+			input_number(select_idx[0], select_idx[1], number, event.shift_pressed)
 
 func grid_idx_to_position(row, col):
 	var x = col * gap + gap / 2
